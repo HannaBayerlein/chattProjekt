@@ -1,15 +1,14 @@
-
+package Client;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client extends Thread {
 	private ReadClient rClient;
 	private WriteClient wClient;
 
 	public Client() {
-		
+
 	}
 
 	public void run() {

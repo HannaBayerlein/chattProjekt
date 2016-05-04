@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
-
 import java.io.IOException;
-
 import java.io.InputStreamReader;
-
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -24,7 +21,7 @@ public class TCPServer {
 				ServerSocket serverSocket = new ServerSocket(30000);
 				System.out.println("Waiting for client on port "
 						+ serverSocket.getLocalPort() + "...");
-				
+
 				Socket server = serverSocket.accept();
 				InputStreamReader in = new InputStreamReader(
 						server.getInputStream());
@@ -38,6 +35,7 @@ public class TCPServer {
 					print.println("Hej Felicia");
 
 				}
+				serverSocket.close();
 
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -46,5 +44,3 @@ public class TCPServer {
 		}
 	}
 }
-
-// }

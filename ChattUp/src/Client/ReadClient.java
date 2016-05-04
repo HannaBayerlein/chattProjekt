@@ -1,12 +1,8 @@
-
-
+package Client;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class ReadClient extends Thread {
 
@@ -20,15 +16,15 @@ public class ReadClient extends Thread {
 		boolean isOnline = true;
 		try {
 
-			while (isOnline){
+			while (isOnline) {
 
 				InputStreamReader in = new InputStreamReader(
 						socket.getInputStream());
 				BufferedReader buffer = new BufferedReader(in);
 				String answer = buffer.readLine();
-				if (answer.endsWith("Q")){
+				if (answer.endsWith("Q")) {
 					isOnline = false;
-				}else{
+				} else {
 					System.out.println(answer);
 				}
 			}
@@ -46,18 +42,3 @@ public class ReadClient extends Thread {
 	}
 
 }
-
-// public static void main(String[] args) {
-//
-// ReadClient client = new ReadClient();
-// client.start();
-//
-// }
-
-// System.out.println("Connecting to server on port 30000");
-// Socket socket = new Socket("localhost", 30000);
-// System.out.println("Just connected to " +
-// socket.getInetAddress());
-// if(answer.equals("Välj användarnamn:")){
-// print.println("User " + message + " joined the chatt");
-// }

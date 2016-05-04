@@ -3,8 +3,6 @@ public class MailBox {
 	private String mail;
 	private User user;
 
-	// private String userName;
-
 	public MailBox() {
 		mail = "";
 		user = null;
@@ -17,10 +15,7 @@ public class MailBox {
 		}
 
 		mail = s;
-		// System.out.println("Mailboxmeddelande addat " + mail);
 		this.user = user;
-		// userName = userNick;
-		// userMessage.set(mail, userName);
 		notifyAll();
 
 	}
@@ -36,11 +31,9 @@ public class MailBox {
 			}
 		}
 		Message temp = new Message(user, mail);
-		// System.out.println("Mailboxmeddelande hämtat " + mail);
 		mail = "";
 		user = null;
 		notifyAll();
-
 		return temp;
 	}
 }

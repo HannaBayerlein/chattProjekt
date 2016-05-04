@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -27,55 +26,43 @@ public class MessageGetter extends Thread {
 				mail = message.getMail();
 				connection = message.getConnection();
 
+				Iterator<User> itr = users.iterator();
+
 				if (mail.startsWith("E:")) {
-					mail = user.getNick() + ": "
+					String echoMail = "Echo: "
 							+ mail.substring(3, mail.length());
 					Socket temp = connection;
-					PrintWriter tempout;
+					write(temp, echoMail);
+
+				} else if (mail.startsWith("P:")) {
+					String privateMail = mail.substring(3, mail.length());
+					boolean privateMailSent = false;
 					
-					try {
-						tempout = new PrintWriter(temp.getOutputStream());
-						tempout.println(mail);
-						tempout.flush();
-					} catch (IOException e) {
-						e.printStackTrace();
+					while (itr.hasNext()) {
+						User tempUser = itr.next();
+						if (privateMail.startsWith(tempUser.getNick())) {
+							privateMail = "Privat: " + privateMail.substring(tempUser
+									.getNick().length(), privateMail.length());
+							Socket temp = tempUser.getSocket();
+							write(temp, user.getNick(), privateMail);
+							privateMailSent = true;
+
+						}
 					}
+					if (!privateMailSent) {
+						String exceptionMail = "Den sökta användaren är inte inloggad";
+						Socket temp = connection;
+						write(temp, exceptionMail);
+					}
+
 				} else {
 
-					Iterator<User> itr = users.iterator();
 					while (itr.hasNext()) {
 						User tempUser = itr.next();
 						Socket temp = tempUser.getSocket();
+						write(temp, user.getNick(), mail);
 
-//						System.out.println("Skickar till: "
-//								+ tempUser.getNick());
-						PrintWriter tempout;
-						
-						try {
-
-							tempout = new PrintWriter(temp.getOutputStream());
-							if(user.getNick().equals(null)){
-								tempout.println("Användaren har valt att lämna chatten");
-							}else{
-							tempout.println(user.getNick() + ": " + mail);
-							}
-							//System.out.println(mail + "MessageGetter");
-							tempout.flush();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
 					}
-
-					// for (int i = 0; i < TCPServer2.connections.size(); i++) {
-					// Socket temp = TCPServer2.connections.get(i);
-					// //PrintWriter tempout;
-					// try {
-					// ObjectOutputStream oos = new
-					// ObjectOutputStream(temp.getOutputStream());
-					// //tempout = new PrintWriter(temp.getOutputStream());
-					// oos.writeObject(mail);
-					// //mail = user.getNick() + ": " + mail;
-					// //tempout.println(mail);
 
 				}
 			}
@@ -83,4 +70,28 @@ public class MessageGetter extends Thread {
 		}
 	}
 
+	public void write(Socket socket, String userNick, String mail) {
+
+		PrintWriter tempout;
+
+		try {
+			tempout = new PrintWriter(socket.getOutputStream());
+			tempout.println(userNick + ": " + mail);
+			tempout.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void write(Socket socket, String exceptionMail) {
+		PrintWriter tempout;
+
+		try {
+			tempout = new PrintWriter(socket.getOutputStream());
+			tempout.println(exceptionMail);
+			tempout.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -1,19 +1,19 @@
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Session extends Thread {
 
 	private Scanner input;
-	private PrintWriter out;
-	String message = "";
+	private String message = "";
 	private MailBox mailBox;
 	private User user;
+	private ArrayList<User> activeUsers;
 
-	public Session(MailBox mailBox, User user) {
+	public Session(MailBox mailBox, User user, ArrayList<User> activeUsers) {
 		this.mailBox = mailBox;
 		this.user = user;
+		this.activeUsers = activeUsers;
 	}
 
 	public void run() {
@@ -21,29 +21,21 @@ public class Session extends Thread {
 		try {
 
 			input = new Scanner(user.getSocket().getInputStream());
-			// out = new PrintWriter(user.getSocket().getOutputStream());
 			while (true) {
-				// if (!input.hasNext()) {
-				// return;
-				// }
 
 				message = input.nextLine();
-				// System.out.println("Session meddelande ");
-
-				// System.out.println(user.getNick() + ": " + message);
 
 				try {
-					if (TCPServer2.users.contains(user)) {
+					if (activeUsers.contains(user)) {
 						if (message.startsWith("N:")) {
-							message = message.substring(3, message.length());
-							user.setNick(message);
+							String changeNick = message.substring(3,
+									message.length());
+							user.setNick(changeNick);
 
 						} else if (message.startsWith("Q")) {
-
-							mailBox.add(user,
-									"Användaren valde att lämna chatten");
-							// user.getSocket().close();
-							TCPServer2.users.remove(user);
+							String exitMessage = "valde att lämna chatten";
+							mailBox.add(user, exitMessage);
+							activeUsers.remove(user);
 
 						} else {
 							mailBox.add(user, message);
