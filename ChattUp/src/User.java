@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -27,5 +32,32 @@ public class User {
 	
 	public Socket getSocket(){
 		return socket;
+	}
+	
+	public void write(String message){
+		try{
+			PrintStream print = new PrintStream(socket.getOutputStream());
+			print.println(message);
+			System.out.println(nickName + ": " + message);
+			read();
+			
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public void read(){
+		
+		InputStreamReader in;
+		try {
+			in = new InputStreamReader(socket.getInputStream());
+			BufferedReader buffer = new BufferedReader(in);
+			String serverHello = buffer.readLine();
+			System.out.println("Userread" + serverHello);
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
 	}
 }

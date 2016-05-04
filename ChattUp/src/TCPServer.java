@@ -24,6 +24,7 @@ public class TCPServer {
 				ServerSocket serverSocket = new ServerSocket(30000);
 				System.out.println("Waiting for client on port "
 						+ serverSocket.getLocalPort() + "...");
+				
 				Socket server = serverSocket.accept();
 				InputStreamReader in = new InputStreamReader(
 						server.getInputStream());

@@ -1,56 +1,46 @@
-
 public class MailBox {
 
 	private String mail;
 	private User user;
-//	private String userName;
-//	private MessageOfUser userMessage;
+
+	// private String userName;
 
 	public MailBox() {
 		mail = "";
 		user = null;
 	}
 
-	public synchronized void add(User user, String s) throws InterruptedException {
+	public synchronized void add(User user, String s)
+			throws InterruptedException {
 		while (!mail.equals("")) {
 			wait();
 		}
-	
+
 		mail = s;
+		// System.out.println("Mailboxmeddelande addat " + mail);
 		this.user = user;
-//		userName = userNick;
-//		userMessage.set(mail, userName);
+		// userName = userNick;
+		// userMessage.set(mail, userName);
 		notifyAll();
-		
+
 	}
 
-	public synchronized Message getMessage() throws InterruptedException {
+	public synchronized Message getMessage() {
 
 		while (mail.equals("")) {
-			wait();
+			try {
+				wait();
+			} catch (InterruptedException e) {
+
+				e.printStackTrace();
+			}
 		}
 		Message temp = new Message(user, mail);
+		// System.out.println("Mailboxmeddelande hämtat " + mail);
 		mail = "";
 		user = null;
 		notifyAll();
+
 		return temp;
 	}
-
-//
-//public class MessageOfUser{
-//	private String message;
-//	private String userNick;
-//	
-//	public MessageOfUser(){
-//		
-//		
-//	}
-//	
-//	public void set(String userNick, String message){
-//		this.message = message;
-//		this.userNick = userNick;
-//	}
-	
-	
-//}
 }

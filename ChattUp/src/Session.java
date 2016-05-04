@@ -21,29 +21,35 @@ public class Session extends Thread {
 		try {
 
 			input = new Scanner(user.getSocket().getInputStream());
-			out = new PrintWriter(user.getSocket().getOutputStream());
+			// out = new PrintWriter(user.getSocket().getOutputStream());
 			while (true) {
-				if (!input.hasNext()) {
-					return;
-				}
+				// if (!input.hasNext()) {
+				// return;
+				// }
+
 				message = input.nextLine();
-				// System.out.println("Client name " +
-				// user.getSocket().getLocalAddress().getHostAddress());
-				System.out.println(user.getNick() + ": " + message);
+				// System.out.println("Session meddelande ");
+
+				// System.out.println(user.getNick() + ": " + message);
 
 				try {
-					if(message.startsWith("N:")){
-						message = message.substring(3, message.length());
-						user.setNick(message);
-							
-					}else if(message.startsWith("Q")){
-						TCPServer2.users.remove(user);
-						mailBox.add(user, "Användaren valde att lämna chatten");
-						user.getSocket().close();
-						
-					}else{
-					mailBox.add(user, message);
+					if (TCPServer2.users.contains(user)) {
+						if (message.startsWith("N:")) {
+							message = message.substring(3, message.length());
+							user.setNick(message);
+
+						} else if (message.startsWith("Q")) {
+
+							mailBox.add(user,
+									"Användaren valde att lämna chatten");
+							// user.getSocket().close();
+							TCPServer2.users.remove(user);
+
+						} else {
+							mailBox.add(user, message);
+						}
 					}
+
 				} catch (InterruptedException e) {
 
 					e.printStackTrace();
