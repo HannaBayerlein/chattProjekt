@@ -34,7 +34,7 @@ public class TCPServer2 {
 
 				/**
 				 * User chooses its unique nickname for the chat. The nickname
-				 * must be unique, otherwise the user must chose another
+				 * must be unique, otherwise the user must chose a different
 				 * nickname.
 				 */
 
