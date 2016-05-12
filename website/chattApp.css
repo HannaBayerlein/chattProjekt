@@ -67,19 +67,6 @@ div {
   text-transform: uppercase;
 }
 
-.btn {
-  color: #FFFFFF;
-	background: #000000;
-  padding: 10px 40px;
-  text-decoration: none;
-}
-
-.btn:hover, .nav ul li:hover{
-	background: #95d6cf;
-	cursor: pointer; 
-	transition: background .5s;  
-}
-
 /* Nav */
 .nav {
 	background: #000;
@@ -101,8 +88,21 @@ div {
 	height: 80px;
 	line-height: 80px; 
 	list-style: none;
-	padding: 0 10px;
-	transition: background .5s; 
+	padding: 0 0px;
+	/*transition: background .5s;*/
+}
+
+.btn {
+  color: #FFFFFF;
+  background: #000000;
+  padding: 10px 40px;
+  text-decoration: none;
+}
+
+.btn:hover, .nav ul li:hover{
+  background: #95d6cf;
+  cursor: pointer; 
+  transition: background .5s;  
 }
 
 
