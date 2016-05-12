@@ -80,13 +80,13 @@ div {
 	transition: background .5s;  
 }
 
+/* Nav */
 .nav {
 	background: #000;
   height: 80px;
   width: 100%;
 }
 
-/* Nav */
 .nav ul {
 	height: 80px;
   list-style: none;
