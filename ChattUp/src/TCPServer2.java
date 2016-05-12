@@ -29,7 +29,7 @@ public class TCPServer2 {
 			while (true) {
 				Socket socket = server.accept();
 				connections.add(socket);
-				System.out.println("Client connected to socket from:"
+				System.out.println("Client connected to socket from: "
 						+ socket.getLocalAddress().getHostName());
 
 				/**
