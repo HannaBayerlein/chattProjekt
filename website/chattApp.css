@@ -88,6 +88,7 @@ div {
 }
 
 .nav ul {
+  display: inline-block;
 	height: 80px;
   list-style: none;
   margin: 0 auto;
@@ -96,7 +97,7 @@ div {
 
 .nav ul li {
 	color: #fff;
-	display: inline-block; 
+	display: inline; 
 	height: 80px;
 	line-height: 80px; 
 	list-style: none;
