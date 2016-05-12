@@ -33,7 +33,7 @@ public class TCPServer2 {
 						+ socket.getLocalAddress().getHostName());
 
 				/**
-				 * User chooses its unique nickname for the chatt. The nickname
+				 * User chooses its unique nickname for the chat. The nickname
 				 * must be unique, otherwise the user must chose another
 				 * nickname.
 				 */
