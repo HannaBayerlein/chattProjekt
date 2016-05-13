@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import server.User;
+//import server.User;
 
 public class TestMain {
 	public static void main(String[] args){
@@ -24,7 +24,7 @@ public class TestMain {
 		JFrame frame = new JFrame("Login");
 		JPanel panel = new JPanel();
 		JTextField text = new JTextField();
-		text.setText("Välj Användarnamn: ");
+		text.setText("Vï¿½lj Anvï¿½ndarnamn: ");
 		text.setEditable(false);
 		JTextField input = new JTextField(15);
 		
@@ -41,7 +41,7 @@ public class TestMain {
 	            new GUI(users);
 	            frame.hide();
 	        	}else{
-	        		System.out.println("Ogiltligt användarnamn");
+	        		System.out.println("Ogiltligt anvï¿½ndarnamn");
 	        	}
 	         }
 		});
