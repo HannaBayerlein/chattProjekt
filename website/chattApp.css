@@ -122,6 +122,10 @@ div {
   margin: 0px 80px 50px 0;
 }
 
+.main #rapport {
+  text-decoration: underline;
+}
+
 
 /* Last part */
 .last {
