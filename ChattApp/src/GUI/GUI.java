@@ -14,15 +14,15 @@ public class GUI {
 
 	
 	JFrame frame = new JFrame("ChattUp");
-	JTabbedPane tabbedPane = new JTabbedPane();			//Delen av framen som är tabbaer
-	JPanel userPanel = new JPanel();					//Delen av framen där användarna ska listas
+	JTabbedPane tabbedPane = new JTabbedPane();			//Delen av framen som ï¿½r tabbaer
+	JPanel userPanel = new JPanel();					//Delen av framen dï¿½r anvï¿½ndarna ska listas
 	
 	UserPane userpane=new UserPane(users);
 //	userpane.setBackground(Color.blue);
 	
 	userPanel.add(userpane);
 	
-	chattroomPane CRpane=new chattroomPane();
+	ChattroomPane CRpane=new ChattroomPane();
 	
 	tabbedPane.addTab("ChattRoom",null, CRpane, "chattroom");
 	

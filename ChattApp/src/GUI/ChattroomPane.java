@@ -7,9 +7,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-public class chattroomPane extends JPanel{
-	public chattroomPane(){
-		//Chattfönster
+public class ChattroomPane extends JPanel{
+	public ChattroomPane(){
+		//Chattfï¿½nster
 		JTextArea Chattroom = new JTextArea(18,37); 
 		Chattroom.setEditable(false);
 		
@@ -29,7 +29,7 @@ public class chattroomPane extends JPanel{
 		
 		//Send-knappen
 		JButton SendButton = new JButton("Send");
-		SendButton.setToolTipText("Klicka på knappen för att skicka meddelande");
+		SendButton.setToolTipText("Klicka pï¿½ knappen fï¿½r att skicka meddelande");
 		
 		SendButton.addActionListener(new SendButton(MessageField, Chattroom));
 //		SendButton.addKeyListener(new SendButton(MessageField));
@@ -38,7 +38,7 @@ public class chattroomPane extends JPanel{
 		MessageField.addActionListener(listener);
 		SendButton.addKeyListener(listener);
 		
-		//Alla komponenter läggs till i Panel:n så de syns i GUI:t
+		//Alla komponenter lï¿½ggs till i Panel:n sï¿½ de syns i GUI:t
 //		getContentPane().add(scroll);
 		//add(Chattroom);
 		add(scroll);
