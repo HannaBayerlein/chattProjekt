@@ -20,7 +20,7 @@ import server.TCPServer2;
 import server.User;
 
 public class GUI implements Observer {
-	chattroomPane CRpane;
+	ChattroomPane CRpane;
 	JFrame Chattframe;
 	JFrame Loginframe;
 	JButton okButton;
@@ -40,6 +40,7 @@ public class GUI implements Observer {
 	public void showChattGUI(){
 	
 	Chattframe = new JFrame("ChattUp");
+
 	JTabbedPane tabbedPane = new JTabbedPane();			//Delen av framen som �r tabbaer
 	JPanel userPanel = new JPanel();					//Delen av framen d�r anv�ndarna ska listas
 	
@@ -48,7 +49,8 @@ public class GUI implements Observer {
 	
 	userPanel.add(userpane);
 	
-	CRpane = new chattroomPane();
+
+	CRpane = new ChattroomPane();
 	
 	tabbedPane.addTab("ChattRoom",null, CRpane, "chattroom");
 	

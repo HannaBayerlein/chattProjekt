@@ -9,14 +9,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class chattroomPane extends JPanel{
+
+public class ChattroomPane extends JPanel{
 	JTextField MessageField;
 	JTextArea Chattroom;
 	JButton SendButton;
 	
-	public chattroomPane(){
+	public ChattroomPane(){
 		//Chattf�nster
 		Chattroom = new JTextArea(18,37); 
+
 		Chattroom.setEditable(false);
 		
 		JScrollPane scroll = new JScrollPane (Chattroom);
@@ -34,7 +36,9 @@ public class chattroomPane extends JPanel{
 		MessageField.setAlignmentY(BOTTOM_ALIGNMENT);
 		
 		//Send-knappen
+		
 		 SendButton = new JButton("Send");
+
 		SendButton.setToolTipText("Klicka p� knappen f�r att skicka meddelande");
 		
 	//	SendButton.addActionListener(actionlistener);
