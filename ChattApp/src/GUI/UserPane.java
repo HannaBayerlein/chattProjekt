@@ -13,45 +13,44 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 
-public class UserPane extends JPanel {
-	public JList<String> nameList;
-	public UserPane(ArrayList<String> users){
+import server.TCPServer2;
+import server.User;
 
+public class UserPane extends JPanel {
+	DefaultListModel<String> nameListModel;
+	public JList<String> nameList;
+	public UserPane(){
+		
+		//ArrayList<User> users = TCPServer2.activeUsers; 
+		
 		setSize(100,300);
 		JTextField textfield = new JTextField("Users Online");
 		textfield.setEditable(false);
-//		JTextArea textarea= new JTextArea(18,10);
-//		textarea.setEditable(false);
+
+		nameListModel = new DefaultListModel<String>();
 		
-		DefaultListModel<String> nameListModel = new DefaultListModel<String>();
-		for(String s:users){
-			nameListModel.addElement(s);
-		}
 		
 		nameList = new JList<String>(nameListModel);
 		
 		nameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		nameList.setPrototypeCellValue("123456789012");
+		//nameList.setPrototypeCellValue("123456789012");
 		nameList.addMouseListener(new MouseClickListener());
-	//	nameList.addListSelectionListener(new NameSelectionListener());
+
 		JScrollPane userList = new JScrollPane(nameList);
-		
-//		StringBuilder sb = new StringBuilder();
-//		for(String user:users){
-//			sb.append(user + "\n");
-//		}
-//		textarea.setText(sb.toString());
-//		
+
 
 		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT,textfield,userList);
 		
-		//Hade detta istället för splitpane, o då hammn de breve varann..
-//		textfield.setAlignmentX(TOP_ALIGNMENT);
-//		textarea.setAlignmentX(BOTTOM_ALIGNMENT);		
-//		add(textfield);
-//		add(textarea);
-		
 		add(splitPane);
+	}
+	public void setUserList(ArrayList<User> users, User user){
+		for(User s:users){
+			String name=s.getNick();
+			if(name.equals(user.getNick())){
+				name=name+" (you)";
+			}
+			nameListModel.addElement(name);
+		}
 	}
 	class MouseClickListener implements MouseListener {
 		/**
@@ -68,7 +67,7 @@ public class UserPane extends JPanel {
 			}
 			
 			String selectedName = nameList.getSelectedValue();
-			System.out.println(selectedName);
+//			System.out.println(selectedName);
 		}
 
 		@Override
@@ -83,7 +82,7 @@ public class UserPane extends JPanel {
 		public void mouseEntered(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			String selectedName = nameList.getSelectedValue();
-			System.out.println(selectedName+" 2");
+//			System.out.println(selectedName+" 2");
 			
 		}
 
@@ -91,15 +90,15 @@ public class UserPane extends JPanel {
 		public void mouseExited(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			String selectedName = nameList.getSelectedValue();
-			System.out.println(selectedName+" 3");
+//			System.out.println(selectedName+" 3");
 			
 		}
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
 			// TODO Auto-generated method stub
-			String selectedName = nameList.getSelectedValue();
-			System.out.println(selectedName+" 4");
+			 String selectedName = nameList.getSelectedValue();
+//			System.out.println(selectedName+" 4");
 			
 		}
 
@@ -107,7 +106,7 @@ public class UserPane extends JPanel {
 		public void mouseReleased(MouseEvent arg0) {
 			// TODO Auto-generated method stub
 			String selectedName = nameList.getSelectedValue();
-			System.out.println(selectedName+" 5");
+//			System.out.println(selectedName+" 5");
 		}
 	}
 }

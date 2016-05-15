@@ -9,58 +9,32 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-//import server.User;
+import Client.Client;
+import server.*;
 
 public class TestMain {
-	public static void main(String[] args){
-		ArrayList<String> users = new ArrayList<String>();
-		users.add("Elin");
-		users.add("Joel");
-		users.add("Hanna");
-		users.add("Myntis");
-		users.add("Felicia");
-		users.add("Elsa");
-		
-		JFrame frame = new JFrame("Login");
-		JPanel panel = new JPanel();
-		JTextField text = new JTextField();
-		text.setText("V�lj Anv�ndarnamn: ");
-		text.setEditable(false);
-		JTextField input = new JTextField(15);
-		
-//		JButton button = new JButton("OK");
-//		button.addActionListener(new ButtonListener());
-//		
-		JButton okButton = new JButton("OK"); 
+	public static void main(String[] args) {
 
-		okButton.addActionListener(new ActionListener() {
-	         public void actionPerformed(ActionEvent e) {
-	        	if(!(input.getText().equals("") && users.contains(input.getText()))){
-	//        	User user = new User(null, input.getText() );
-	        	users.add(input.getText());		
-	            new GUI(users);
-	            frame.hide();
-	        	}else{
-	        		System.out.println("Ogiltligt anv�ndarnamn");
-	        	}
-	         }
-		});
-		panel.add(text);
-		panel.add(input);
-		panel.add(okButton);
-		frame.add(panel);
+		GUI gui = new GUI();
+		Model model = new Model();
 		
-		frame.setSize(250,150);
-		frame.setVisible(true);
-				
-	}
-	public class ButtonListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		model.addObserver(gui);  //gör att gui:t kollar på modeln och gör stuff när den blir notified
 		
-	}
+	
+		Controller con = new Controller();
+		con.setModel(model);
+		
+		SendButtonListener sbl = new SendButtonListener();
+		sbl.setController(con);
+		sbl.setGUI(gui);
+		
+		gui.SetListeners(sbl);
+		
+		LoginButtonListener lbl = new LoginButtonListener();
+		lbl.setController(con);
+		lbl.setGUI(gui);
+		
+		gui.SetListenerLogin(lbl);
+		
+	}	
 }

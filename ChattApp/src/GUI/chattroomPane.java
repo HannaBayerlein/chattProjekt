@@ -1,16 +1,22 @@
 package GUI;
 
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 
 public class chattroomPane extends JPanel{
+	JTextField MessageField;
+	JTextArea Chattroom;
+	JButton SendButton;
+	
 	public chattroomPane(){
-		//Chattfönster
-		JTextArea Chattroom = new JTextArea(18,37); 
+		//Chattfï¿½nster
+		Chattroom = new JTextArea(18,37); 
 		Chattroom.setEditable(false);
 		
 		JScrollPane scroll = new JScrollPane (Chattroom);
@@ -22,23 +28,23 @@ public class chattroomPane extends JPanel{
 //		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 //		
 		//meddelanderutan
-		JTextField MessageField = new JTextField(30);
+		MessageField = new JTextField(30);
 		MessageField.setSize(300, 20);
 		MessageField.setAlignmentX(LEFT_ALIGNMENT);
 		MessageField.setAlignmentY(BOTTOM_ALIGNMENT);
 		
 		//Send-knappen
-		JButton SendButton = new JButton("Send");
-		SendButton.setToolTipText("Klicka på knappen för att skicka meddelande");
+		 SendButton = new JButton("Send");
+		SendButton.setToolTipText("Klicka pï¿½ knappen fï¿½r att skicka meddelande");
 		
-		SendButton.addActionListener(new SendButton(MessageField, Chattroom));
+	//	SendButton.addActionListener(actionlistener);
 //		SendButton.addKeyListener(new SendButton(MessageField));
 		
-		SendButton listener = new SendButton(MessageField, Chattroom);
-		MessageField.addActionListener(listener);
-		SendButton.addKeyListener(listener);
+	//	SendButtonListener listener = new SendButtonListener();
+//		MessageField.addActionListener(actionlistener);
+//		SendButton.addKeyListener(keylistener);
 		
-		//Alla komponenter läggs till i Panel:n så de syns i GUI:t
+		//Alla komponenter lï¿½ggs till i Panel:n sï¿½ de syns i GUI:t
 //		getContentPane().add(scroll);
 		//add(Chattroom);
 		add(scroll);
@@ -46,5 +52,19 @@ public class chattroomPane extends JPanel{
 		add(SendButton);
 
 	}
-
+	public String getMessage(){
+		return MessageField.getText();
+	}
+	public void ClearMessageField(){
+		MessageField.setText("");
+	}
+	public void setChattroomText(String text){
+		Chattroom.setText(Chattroom.getText()+"\n"+ text);
+	}
+	public void setSendButtonListener(SendButtonListener listener){
+		System.out.println("joel");
+		SendButton.addActionListener(listener);
+		MessageField.addActionListener(listener);
+		SendButton.addKeyListener(listener);
+	}
 }
