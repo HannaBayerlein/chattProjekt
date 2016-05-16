@@ -116,6 +116,7 @@ div {
   width: 100%;
   display: inline-block;
   margin: 0 auto;
+  padding: 20px 70px;
   /*height: 360px;*/
 }
 
