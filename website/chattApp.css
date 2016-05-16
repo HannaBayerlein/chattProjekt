@@ -129,13 +129,13 @@ div {
   padding-left: 250px;
 }
 
-.main #rapport {
+.main a {
   color: #000;
   font-weight: bold;
   text-decoration: underline;
 }
 
-.main #rapport:hover {
+.main a:hover {
   color: #95d6cf;
   cursor: pointer; 
   transition: color .5s;
