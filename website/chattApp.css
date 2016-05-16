@@ -115,6 +115,7 @@ div {
   background: #FFF;
   width: 100%;
   display: inline-block;
+  margin: 0 auto;
   /*height: 360px;*/
 }
 
@@ -123,7 +124,7 @@ div {
   margin: 0px 80px 50px 0;
 }
 
-.main ul {
+.main .container .text {
   padding-left: 270px;
 }
 
