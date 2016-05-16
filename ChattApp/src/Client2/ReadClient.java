@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+import GUI.Controller;
+
 public class ReadClient extends Thread {
 
 	private Socket socket;
-
-	public ReadClient(Socket socket) {
+	private Controller controller;
+	public ReadClient(Socket socket, Controller controller) {
 		this.socket = socket;
+		this.controller=controller;
 	}
 
 	public void run() {
@@ -26,6 +29,7 @@ public class ReadClient extends Thread {
 					isOnline = false;
 				} else {
 					System.out.println(answer);
+					controller.receive(answer);
 				}
 			}
 

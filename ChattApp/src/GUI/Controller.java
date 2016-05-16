@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
+import Client2.Client;
 import server.Message;
 import server.User;
 
@@ -20,25 +21,33 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 	public void send(String message) { //prata med server och uppdatera modeln.
 		
 		
-		//PrintStream print = new PrintStream(socket.getOutputStream());
-//		print.println("Välj användarnamn:");
+
 	}
-	public void receive() throws IOException{
-//		InputStreamReader in = new InputStreamReader(socket.getInputStream());
-//		BufferedReader buffer = new BufferedReader(in);
+	public void receive(String message) { //anropas av read client
 		
+		Message m = new Message(null, message);
+		model.addMessage(m);
+	
 	}
 	public void send(User user, String text){
 		
 		//pratar med Servern...
 		
 
-		System.out.println(user.getNick() + " Skriver nu");
+//		System.out.println(user.getNick() + " Skriver nu");
 		Message message = new Message(user,text);
 		model.addMessage(message);
 	}
-	public boolean Login(String name){
-		//här conectar man med 30000 osv ?.. och ger då en socket till användaren
+	public boolean Login(String name) throws IOException{
+		Client client = new Client(this);
+		client.start();
+		
+		//outputStream name. 
+	
+		client.sendMessageToServer(name);
+		//server: skickar User som plockas upp här.
+		
+	
 		//Här kollar man också om det finns någon med samma namn.. 
 		
 		User user= new User(null,name);

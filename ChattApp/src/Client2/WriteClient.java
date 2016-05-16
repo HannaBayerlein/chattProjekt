@@ -15,8 +15,10 @@ public class WriteClient extends Thread {
 		boolean isOnline = true;
 		try {
 			while (isOnline) {
-				Scanner scan = new Scanner(System.in);
+				Scanner scan = new Scanner(System.in); 
 				String message = scan.nextLine();
+				
+				
 				PrintStream print = new PrintStream(socket.getOutputStream());
 				print.println(message);
 				if (message.startsWith("Q")) {
