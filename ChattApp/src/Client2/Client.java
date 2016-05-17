@@ -38,13 +38,12 @@ public class Client extends Thread {
 	public Socket getSocket(){
 		return socket;
 	}
-	
 	public void sendMessageToServer(String message) {
 		PrintStream print;
 		try {
 			socket = getSocket();
 			if(socket==null){
-				System.out.println("socket är null.");
+				System.out.println("socket ï¿½r null.");
 			}
 			print = new PrintStream(socket.getOutputStream());
 			print.println(message);

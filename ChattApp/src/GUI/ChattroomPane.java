@@ -66,7 +66,6 @@ public class ChattroomPane extends JPanel{
 		Chattroom.setText(Chattroom.getText()+"\n"+ text);
 	}
 	public void setSendButtonListener(SendButtonListener listener){
-		System.out.println("joel");
 		SendButton.addActionListener(listener);
 		MessageField.addActionListener(listener);
 		SendButton.addKeyListener(listener);

@@ -45,7 +45,6 @@ public class GUI implements Observer {
 	JPanel userPanel = new JPanel();					//Delen av framen d�r anv�ndarna ska listas
 	
 	userpane=new UserPane();
-//	userpane.setBackground(Color.blue);
 	
 	userPanel.add(userpane);
 	
@@ -109,8 +108,7 @@ public class GUI implements Observer {
 		Loginframe.setVisible(true);
 		
 		}
-	public void ShowChattRoomGUI(){ //och glöm login-fönstet
-		System.out.println("Nu öppnas GUI nr2");
+	public void ShowChattRoomGUI(){ //och göm login-fönstet
 		Chattframe.setVisible(true);
 		Loginframe.hide();
 	}
@@ -128,9 +126,9 @@ public class GUI implements Observer {
 		
 		if(arg instanceof Message){
 		Message m =(Message) arg;
-		String user = m.getUser().getNick();
+		//String user = m.getUser().getNick();
 		String messagetext= m.getMail();
-		setChattroomText(user+" säger: "+ messagetext);
+		setChattroomText( messagetext);
 		}
 		else if (arg instanceof ArrayList<?>){
 			System.out.println("nu ska users-pane uppdateras");

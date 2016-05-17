@@ -9,11 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Client.Client;
+import Client2.Client;
 import server.*;
 
 public class TestMain {
 	public static void main(String[] args) {
+		
+		
 
 		GUI gui = new GUI();
 		Model model = new Model();
@@ -23,6 +25,11 @@ public class TestMain {
 	
 		Controller con = new Controller();
 		con.setModel(model);
+		
+		Client client = new Client(con);
+		client.start();
+		
+		con.addClient(client);
 		
 		SendButtonListener sbl = new SendButtonListener();
 		sbl.setController(con);

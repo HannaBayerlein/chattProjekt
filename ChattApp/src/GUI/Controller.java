@@ -12,6 +12,7 @@ import server.User;
 
 public class Controller { //Controller ska ha koll på input/output-stream och sen skicka infon till Modeln.
 	Model model = null;
+	Client client =null;
 	public Controller(){
 		
 	}
@@ -32,19 +33,25 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 	public void send(User user, String text){
 		
 		//pratar med Servern...
+		//client.sendMessageToServer(user.getNick()+": "+text);
 		
-		//sendMessageToServer(text);
+		client.sendMessageToServer(text);
 		//System.out.println(user.getNick() + " Skriver nu");
 		Message message = new Message(user,text);
 		model.addMessage(message);
 	}
-	public boolean Login(String name) throws IOException{
-		Client client = new Client(this);
-		client.start();
+	public void addClient(Client c){
+		client = c;
+	}
 	
-		while(true){
+	public boolean Login(String name) throws IOException{
+		
+	
+		System.out.println("nu är jag i controller.Login");
+
 			if(!(client.getSocket() == null)){
-		client.sendMessageToServer(name); //outputStream name. 
+				System.out.println("\nsocketen är INTE nulll nu ");
+			client.sendMessageToServer(name); //outputStream name. 
 		
 		//server: skickar User som plockas upp här.
 		//String answer = client.receiveLoginUser();
@@ -52,9 +59,9 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 		
 		User user= new User(null,name);
 		model.addUser(user);
-			break;
+		
 			}
-		}
+		
 		return true;
 	}
 }
