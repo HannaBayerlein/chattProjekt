@@ -40,13 +40,14 @@ public class TCPServer2 {
 				 */
 
 				PrintStream print = new PrintStream(socket.getOutputStream());
-				print.println("Välj användarnamn:");
+//				print.println("Välj användarnamn:");
 
 				InputStreamReader in = new InputStreamReader(
 						socket.getInputStream());
 				BufferedReader buffer = new BufferedReader(in);
 				String userName = buffer.readLine();
 				User user = new User(socket, userName);
+				System.out.println("Servern har lagt till i sin databas: "+ user.getNick());
 
 				for (int i = 0; i < activeUsers.size(); i++) {
 					User tempUser = activeUsers.get(i);

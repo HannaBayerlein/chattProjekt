@@ -1,6 +1,8 @@
 package Client2;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
@@ -40,16 +42,40 @@ public class Client extends Thread {
 	public void sendMessageToServer(String message) {
 		PrintStream print;
 		try {
-			socket = new Socket("localhost", 30000);
+			socket = getSocket();
+			if(socket==null){
+				System.out.println("socket är null.");
+			}
 			print = new PrintStream(socket.getOutputStream());
 			print.println(message);
-			socket.close();
+			//ssocket.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+//		try {
+//			socket.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
-
+	public String receiveLoginUser(){
+		String answer=null;
+		try {
+			socket = new Socket("localhost", 30000);
+		InputStreamReader in = new InputStreamReader(
+				socket.getInputStream());
+		BufferedReader buffer = new BufferedReader(in);
+		answer = buffer.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		try {
+//			socket.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		return answer;
+	}
+	
 }

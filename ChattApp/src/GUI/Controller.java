@@ -24,7 +24,7 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 
 	}
 	public void receive(String message) { //anropas av read client
-		
+		System.out.println("Servern skickade: "+ message);
 		Message m = new Message(null, message);
 		model.addMessage(m);
 	
@@ -33,25 +33,28 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 		
 		//pratar med Servern...
 		
-
-//		System.out.println(user.getNick() + " Skriver nu");
+		//sendMessageToServer(text);
+		//System.out.println(user.getNick() + " Skriver nu");
 		Message message = new Message(user,text);
 		model.addMessage(message);
 	}
 	public boolean Login(String name) throws IOException{
 		Client client = new Client(this);
 		client.start();
-		
-		//outputStream name. 
 	
-		client.sendMessageToServer(name);
+		while(true){
+			if(!(client.getSocket() == null)){
+		client.sendMessageToServer(name); //outputStream name. 
+		
 		//server: skickar User som plockas upp här.
-		
-	
+		//String answer = client.receiveLoginUser();
 		//Här kollar man också om det finns någon med samma namn.. 
 		
 		User user= new User(null,name);
 		model.addUser(user);
+			break;
+			}
+		}
 		return true;
 	}
 }
