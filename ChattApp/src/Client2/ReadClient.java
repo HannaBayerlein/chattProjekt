@@ -28,8 +28,6 @@ public class ReadClient extends Thread {
 				if (answer.endsWith("Q")) {
 					isOnline = false;
 				} else {
-					System.out.println("hjehejhejehjehallluuuuu");
-					System.out.println(answer);
 					controller.receive(answer);
 				}
 			}

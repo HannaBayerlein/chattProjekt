@@ -43,12 +43,13 @@ public class UserPane extends JPanel {
 		
 		add(splitPane);
 	}
-	public void setUserList(ArrayList<User> users, User user){
-		for(User s:users){
-			String name=s.getNick();
-			if(name.equals(user.getNick())){
-				name=name+" (you)";
-			}
+	public void setUserList(ArrayList<String> users){ // String thisuser
+		nameListModel.removeAllElements();
+		for(String name:users){
+//			if(name.equals(thisuser)){
+//				name=name+" (you)";
+//			}
+			
 			nameListModel.addElement(name);
 		}
 	}

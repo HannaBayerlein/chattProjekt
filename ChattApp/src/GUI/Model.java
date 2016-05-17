@@ -8,17 +8,18 @@ import server.Message;
 import server.User;
 
 public class Model extends Observable{   //Modeln får info från Controller och lägger till info på något ställe och Notify:ar sen GUI:it
-	ArrayList<User> users = new ArrayList<User>();
-	ArrayList<Message> messages= new ArrayList<Message>();
+	ArrayList<String> users = new ArrayList<String>();
+	ArrayList<String> messages= new ArrayList<String>();
 	public Model(){
 		
 	}
-	public void addUser(User user){
-		users.add(new User(null,"Hanna"));
-		users.add(new User(null,"Felicia"));
-		users.add(new User(null,"Elsa"));
-		users.add(new User(null,"Firefox"));
-		users.add(new User(null,"Tanten"));
+	public void updateUsers(ArrayList<String> userList){
+		
+		setChanged();
+		notifyObservers(userList);
+	}
+	public void addUser(String user){
+
 		users.add(user);
 		setChanged();
 		notifyObservers(users);
@@ -28,7 +29,7 @@ public class Model extends Observable{   //Modeln får info från Controller och
 		setChanged();
 		notifyObservers(users);
 	}
-	public void addMessage(Message message){
+	public void addMessage(String message){
 		messages.add(message);
 		setChanged();
 		notifyObservers(message);

@@ -123,16 +123,14 @@ public class GUI implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) { 	//när man skriver notifyAll gör detta:
-		
-		if(arg instanceof Message){
-		Message m =(Message) arg;
-		//String user = m.getUser().getNick();
-		String messagetext= m.getMail();
-		setChattroomText( messagetext);
+		if(arg instanceof String){
+			String messagetext= (String) arg;
+			setChattroomText(messagetext);
 		}
+		
 		else if (arg instanceof ArrayList<?>){
-			System.out.println("nu ska users-pane uppdateras");
-			setUserList((ArrayList<User>) arg);
+			System.out.println("nu ska users-pane uppdateras. GUI.update");
+			setUserList((ArrayList<String>) arg);
 			
 		}else{
 			System.out.println("arg kunde inte tolkas av instance of Message eller ArrayList<?>");
@@ -153,8 +151,8 @@ public class GUI implements Observer {
 		CRpane.setSendButtonListener(listener);
 
 	}
-	public void setUserList(ArrayList<User> users){
-		userpane.setUserList(users, user);
+	public void setUserList(ArrayList<String> users){
+		userpane.setUserList(users);	//user.getNick()
 	}
 	public void setUserNick(String name){
 		user.setNick(name);

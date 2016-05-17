@@ -65,8 +65,19 @@ public class TCPServer2 {
 
 				activeUsers.add(user);
 				String newUser = "joined the chatt";
+				
+				StringBuilder sb=new StringBuilder();
+				for(User u: activeUsers){
+					sb.append("&&&"+u.getNick());
+				}
+				newUser = newUser+sb.toString();
+				//mailBox.add(user,sb.toString());
+				
 				try {
 					mailBox.add(user, newUser);
+					
+					//Skickar ut ny user-lista
+					
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
