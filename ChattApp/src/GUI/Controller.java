@@ -17,14 +17,7 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 	public void setModel(Model m){
 		model=m;
 	}
-	public void send(String message) { //prata med server och uppdatera modeln.
-		
-		
-
-	}
 	public void receive(String message) { //anropas av read client
-		System.out.println(message);
-		
 		if(message.contains("&&&")){
 			String[] users = message.split("&&&");
 			ArrayList<String> userList = new ArrayList<String>(Arrays.asList(users));
@@ -36,23 +29,21 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 			model.addMessage(message);
 		}
 	}
-	public void send(User user, String text){
-		
-		//pratar med Servern...
-		
+	public void send(String text){
+
 		client.sendMessageToServer(text);
 
-		//model.addMessage(text);
 	}
 	public void addClient(Client c){
 		client = c;
 	}
 	
 	public boolean Login(String name) throws IOException{
-		
+
 			if(!(client.getSocket() == null)){
 			client.sendMessageToServer(name); //outputStream name. 
-		
+			return true;
+			
 		//server: skickar User som plockas upp här.
 		//String answer = client.receiveLoginUser();
 		//Här kollar man också om det finns någon med samma namn.. 
@@ -62,6 +53,6 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 		
 			}
 		
-		return true;
+		return false;
 	}
 }

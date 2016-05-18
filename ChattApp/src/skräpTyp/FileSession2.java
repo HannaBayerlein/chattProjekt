@@ -1,9 +1,12 @@
-package server;
+package skräpTyp;
 
 	import java.io.IOException;
 	import java.util.ArrayList;
 	import java.util.Scanner;
-public class FileSession extends Thread{
+
+import server.MailBox;
+import server.User;
+public class FileSession2 extends Thread{
 
 		private Scanner input;
 		private String message = "";
@@ -11,7 +14,7 @@ public class FileSession extends Thread{
 		private User user;
 		private ArrayList<User> activeUsers;
 
-		public FileSession(MailBox mailBox, User user, ArrayList<User> activeUsers) {
+		public FileSession2(MailBox mailBox, User user, ArrayList<User> activeUsers) {
 			this.mailBox = mailBox;
 			this.user = user;
 			this.activeUsers = activeUsers;

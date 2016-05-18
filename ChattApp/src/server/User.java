@@ -5,9 +5,11 @@ public class User {
 	private String nickName;
 	private boolean active = false;
 	private Socket socket;
+	private Socket fileSocket; //ny
 
-	public User(Socket socket, String userName) {
+	public User(Socket socket, Socket fileSocket, String userName) {
 		this.socket = socket;
+		this.fileSocket = fileSocket;//ny
 		nickName = userName;
 		active = true;
 	}
@@ -26,6 +28,9 @@ public class User {
 
 	public Socket getSocket() {
 		return socket;
+	}
+	public Socket getFileSocket() { //ny metod
+		return fileSocket;
 	}
 
 }

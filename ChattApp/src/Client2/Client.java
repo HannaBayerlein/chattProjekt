@@ -21,9 +21,10 @@ public class Client extends Thread {
 
 	public void run() {
 		System.out.println("Connecting to server on port 30000");
-
+		Socket fileSocket;
 		try {
 			socket = new Socket("localhost", 30000);
+			fileSocket = new Socket("localhost", 30000);
 			System.out.println("Just connected to " + socket.getInetAddress());
 			//wClient = new WriteClient(socket);
 			rClient = new ReadClient(socket,controller);

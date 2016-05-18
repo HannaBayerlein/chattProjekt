@@ -25,10 +25,15 @@ public class LoginButtonListener implements ActionListener, KeyListener {
 	    public void actionPerformed(ActionEvent submitClicked) {
 	    	if (!(gui.getUserName().equals("") )) {
 	    		gui.ceateUser(gui.getUserName());
+	    		System.out.println("Du ahr valt namn: "+ gui.getUserName());
 	    		try {
+	    			
 					if(controller.Login(gui.getUserName())){
 						gui.ShowChattRoomGUI();
-					}
+	    			}	else{
+	    				System.out.println("LoginButtonListener kunde inte köra con.Login");
+	    			}
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

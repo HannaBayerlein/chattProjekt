@@ -1,18 +1,22 @@
-package server;
+package skräpTyp;
 	import java.io.IOException;
 	import java.io.PrintWriter;
 	import java.net.Socket;
 	import java.util.ArrayList;
 	import java.util.Iterator;
 
-public class FileGetter extends Thread{
+import server.MailBox;
+import server.Message;
+import server.User;
+
+public class FileGetter2 extends Thread{
 
 
 
 		private MailBox mailBox;
 		private ArrayList<User> users;
 
-		public FileGetter(MailBox mailBox, ArrayList<User> users) {
+		public FileGetter2(MailBox mailBox, ArrayList<User> users) {
 			this.mailBox = mailBox;
 			this.users = users;
 		}

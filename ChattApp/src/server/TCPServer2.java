@@ -1,4 +1,4 @@
-package server;
+package server; //chattApp
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,13 +7,20 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import server.FileBox;
+import server.FileGetter;
+import server.FileSession;
+import server.User;
+
 public class TCPServer2 {
 
 	public static ArrayList<Socket> connections = new ArrayList<Socket>();
 	public static ArrayList<User> activeUsers = new ArrayList<User>();
+	public static ArrayList<Socket> fileConnections = new ArrayList<Socket>(); //ny!
 
 	public static void main(String[] args) {
 		MailBox mailBox = new MailBox();
+		FileBox fileBox = new FileBox(); //ny!
 		ServerSocket server;
 
 		/**
@@ -22,14 +29,18 @@ public class TCPServer2 {
 
 		try {
 			server = new ServerSocket(30000);
-			System.out.println("Waiting for clients on port 30000...");
+			System.out.println("Rätt server!! Waiting for clients on port 30000...");
 			MessageGetter messageGetter = new MessageGetter(mailBox,
 					activeUsers);
 			messageGetter.start();
+			FileGetter fileGetter = new FileGetter(fileBox, activeUsers); //ny!
+			fileGetter.start(); //ny!
 
 			while (true) {
 				Socket socket = server.accept();
+				Socket fileSocket = server.accept(); //ny
 				connections.add(socket);
+				fileConnections.add(fileSocket); // Ny
 				System.out.println("Client connected to socket from: "
 						+ socket.getLocalAddress().getHostName());
 
@@ -46,7 +57,8 @@ public class TCPServer2 {
 						socket.getInputStream());
 				BufferedReader buffer = new BufferedReader(in);
 				String userName = buffer.readLine();
-				User user = new User(socket, userName);
+				User user = new User(socket, fileSocket, userName); //+fileSocket ny!
+				//User user = new User(socket, userName); 
 				System.out.println("Servern har lagt till i sin databas: "+ user.getNick());
 
 				for (int i = 0; i < activeUsers.size(); i++) {
@@ -72,7 +84,7 @@ public class TCPServer2 {
 				}
 				newUser = newUser+sb.toString();
 				//mailBox.add(user,sb.toString());
-				
+				System.out.println("TCP2 skapade detta: "+newUser);
 				try {
 					mailBox.add(user, newUser);
 					
@@ -83,7 +95,9 @@ public class TCPServer2 {
 				}
 
 				Session session = new Session(mailBox, user, activeUsers);
+				FileSession fileSession = new FileSession(fileBox, user, activeUsers);
 				session.start();
+				fileSession.start();
 
 			}
 		} catch (IOException e) {

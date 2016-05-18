@@ -14,6 +14,7 @@ public class ChattroomPane extends JPanel{
 	JTextField MessageField;
 	JTextArea Chattroom;
 	JButton SendButton;
+	JButton SendFileButton;
 	
 	public ChattroomPane(){
 		//Chattf�nster
@@ -37,9 +38,12 @@ public class ChattroomPane extends JPanel{
 		
 		//Send-knappen
 		
-		 SendButton = new JButton("Send");
+		SendButton = new JButton("Send");
 
 		SendButton.setToolTipText("Klicka p� knappen f�r att skicka meddelande");
+		
+		SendFileButton =new JButton("Send File");
+		SendFileButton.setToolTipText("Klicka på knappen för att skicka en fil");
 		
 	//	SendButton.addActionListener(actionlistener);
 //		SendButton.addKeyListener(new SendButton(MessageField));
@@ -54,6 +58,7 @@ public class ChattroomPane extends JPanel{
 		add(scroll);
 		add(MessageField);
 		add(SendButton);
+		add(SendFileButton);
 
 	}
 	public String getMessage(){
@@ -70,4 +75,9 @@ public class ChattroomPane extends JPanel{
 		MessageField.addActionListener(listener);
 		SendButton.addKeyListener(listener);
 	}
+	public void setSendFileButtonListener(SendFileButtonListener listener){
+		SendFileButton.addActionListener(listener);
+		SendFileButton.addKeyListener(listener);
+	}
+	
 }

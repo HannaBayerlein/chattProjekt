@@ -1,13 +1,16 @@
-package server;
+package skräpTyp;
 
-public class FileBox {
+import server.Message;
+import server.User;
+
+public class FileBox2 {
 
 	private String mail;
 	private User user;
 
 		
 
-		public FileBox() {
+		public FileBox2() {
 			mail = "";
 			user = null;
 		}

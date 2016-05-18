@@ -26,7 +26,7 @@ public class GUI implements Observer {
 	JButton okButton;
 	JTextField Userinput;
 	UserPane userpane;
-	User user;
+	String user;
 	
 	
 	public GUI(){
@@ -146,20 +146,21 @@ public class GUI implements Observer {
 	public void setChattroomText(String text){
 		CRpane.setChattroomText(text);
 	}
-	public void SetListeners(SendButtonListener listener){
+	public void SetListeners(SendButtonListener listener, SendFileButtonListener filelistener){
 		CRpane.setSendButtonListener(listener);
+		CRpane.setSendFileButtonListener(filelistener);
 
 	}
 	public void setUserList(ArrayList<String> users){
 		userpane.setUserList(users);	//user.getNick()
 	}
 	public void setUserNick(String name){
-		user.setNick(name);
+		user=name;
 	}
 	public void ceateUser(String name){
-		user = new User(null, name);
+		user = name;
 	}
-	public User getUser(){
+	public String getUser(){
 		return user;
 	}
 }

@@ -43,9 +43,9 @@ public class SendButtonListener implements ActionListener, KeyListener {
     private void action() {
     	String message = gui.getMessage();
     	gui.ClearMessageField();
-    	//System.out.println(message);
+    	System.out.println(message);
       	
-    	controller.send(gui.getUser(), message);
+    	controller.send(message);
     }
     
     

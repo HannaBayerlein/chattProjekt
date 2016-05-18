@@ -35,7 +35,11 @@ public class TestMain {
 		sbl.setController(con);
 		sbl.setGUI(gui);
 		
-		gui.SetListeners(sbl);
+		SendFileButtonListener sfbl = new SendFileButtonListener();
+		sfbl.setController(con);
+		sfbl.setGUI(gui);
+		
+		gui.SetListeners(sbl,sfbl);
 		
 		LoginButtonListener lbl = new LoginButtonListener();
 		lbl.setController(con);
