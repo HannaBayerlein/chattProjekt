@@ -23,12 +23,14 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 
 	}
 	public void receive(String message) { //anropas av read client
+		System.out.println(message);
+		
 		if(message.contains("&&&")){
 			String[] users = message.split("&&&");
 			ArrayList<String> userList = new ArrayList<String>(Arrays.asList(users));
 			String joindmsg=userList.remove(0);
 			model.updateUsers(userList);
-			model.addMessage(joindmsg);
+			model.addMessage(joindmsg); 
 			
 		}else{
 			model.addMessage(message);
@@ -40,7 +42,7 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 		
 		client.sendMessageToServer(text);
 
-		model.addMessage(text);
+		//model.addMessage(text);
 	}
 	public void addClient(Client c){
 		client = c;

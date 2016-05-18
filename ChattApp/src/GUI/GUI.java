@@ -129,7 +129,6 @@ public class GUI implements Observer {
 		}
 		
 		else if (arg instanceof ArrayList<?>){
-			System.out.println("nu ska users-pane uppdateras. GUI.update");
 			setUserList((ArrayList<String>) arg);
 			
 		}else{

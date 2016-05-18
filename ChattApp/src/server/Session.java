@@ -29,9 +29,18 @@ public class Session extends Thread {
 				try {
 					if (activeUsers.contains(user)) {
 						if (message.startsWith("N:")) {
+							String oldName= user.getNick();
 							String changeNick = message.substring(3,
 									message.length());
 							user.setNick(changeNick);
+							
+							StringBuilder sb=new StringBuilder();
+							sb.append("Changed name from "+oldName);
+							for(User u: activeUsers){
+								sb.append("&&&"+u.getNick());
+							}
+							String updateUserList = sb.toString();
+							mailBox.add(user, updateUserList);
 
 						} else if (message.startsWith("Q")) {
 							String exitMessage = "valde att lämna chatten";
