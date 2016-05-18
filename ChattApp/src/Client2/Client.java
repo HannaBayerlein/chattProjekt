@@ -7,12 +7,17 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 import GUI.Controller;
-import server.Message;
+import Client2.ReadFile;
+import Client2.SendFile;
+
 
 public class Client extends Thread {
 	private ReadClient rClient;
 	private WriteClient wClient;
+	private ReadFile rFile;
+	private SendFile sFile;
 	Socket socket;
+	Socket fileSocket;
 	private Controller controller;
 
 	public Client(Controller controller) {
@@ -21,15 +26,18 @@ public class Client extends Thread {
 
 	public void run() {
 		System.out.println("Connecting to server on port 30000");
-		Socket fileSocket;
+		
 		try {
 			socket = new Socket("localhost", 30000);
 			fileSocket = new Socket("localhost", 30000);
-			System.out.println("Just connected to " + socket.getInetAddress());
-			//wClient = new WriteClient(socket);
+			System.out.println("Just connected to " + socket.getInetAddress() + " and " + fileSocket.getInetAddress());
+	
 			rClient = new ReadClient(socket,controller);
-		//	wClient.start();
+			rFile = new ReadFile(fileSocket);
+			sFile = new SendFile(fileSocket);
 			rClient.start();
+			rFile.start();
+			sFile.start();
 
 		} catch (IOException e) {
 			e.printStackTrace();
