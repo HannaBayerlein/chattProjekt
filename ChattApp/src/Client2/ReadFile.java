@@ -7,23 +7,29 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+import GUI.Controller;
+
 public class ReadFile extends Thread {
 
-	private Socket socket;
+	private Socket fileSocket;
+	private Controller controller;
 
-	public ReadFile(Socket socket) {
-		this.socket = socket;
+	public ReadFile(Socket fileSocket, Controller controller) {
+		this.fileSocket = fileSocket;
+		this.controller =controller;
 	}
 
 	public void run() {
 		boolean isOnline = true;
 		String fileName;
 		int fileSize;
-		while (isOnline) {
+		
+		System.out.println("i ReadFile nu, utanför try..");
 			try {
-
-				DataInputStream dis = new DataInputStream(socket.getInputStream());
-
+				while (isOnline) {
+				System.out.println("i ReadFile nu..");
+				DataInputStream dis = new DataInputStream(fileSocket.getInputStream());
+				System.out.println(fileSocket.getInputStream());
 				/**
 				 * receives name of file and creates file in C:/Users/felicia/
 				 */
@@ -33,7 +39,8 @@ public class ReadFile extends Thread {
 				/** receives size of file */
 				fileSize = (int) dis.readLong();
 				System.out.println("Filename is: " + fileName + " File size is: " + fileSize);
-
+				controller.receive("You just recived a file: " + fileName);
+				
 				/** save on byte array byteFile by using fileoutputstream */
 				byte[] byteFile = new byte[fileSize];
 				int read = 0;
@@ -49,16 +56,16 @@ public class ReadFile extends Thread {
 
 				FileOutputStream fout = new FileOutputStream(newFile);
 				fout.write(byteFile);
-				fout.close();
+				//fout.close();
 
 				fout.flush();
 //				fout.close();
 //				dis.close();
-
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 
-		}
+		
 	}
 }

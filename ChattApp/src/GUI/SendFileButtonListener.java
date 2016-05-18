@@ -39,25 +39,21 @@ public class SendFileButtonListener implements ActionListener, KeyListener {
    
     }
     private void action() {
-    	System.out.println("Nu ska vi skicka en file..");
     	JFrame frame = new JFrame();
     	int returnVal = fileDialog.showOpenDialog(frame);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-           java.io.File file = fileDialog.getSelectedFile();
-           System.out.println("File Selected :" + file.getName());
-           System.out.println(fileDialog.getSelectedFile().getAbsolutePath());
+     //      java.io.File file = fileDialog.getSelectedFile();
+           System.out.println("SendFileButtonlistner.action: " + fileDialog.getSelectedFile().getAbsolutePath());
+
+           String filePath = fileDialog.getSelectedFile().getAbsolutePath();
+           controller.sendFile(filePath);
         }
         else{
            System.out.println("Open command cancelled by user." );           
         } 
         frame.setVisible(true);
-    	
-//    	FileChooser f = new FileChooser();
-//    	int returnVal = fc.showOpenDialog(FileChooser.this);
-//
-//        if (returnVal == JFileChooser.APPROVE_OPTION) {
-//            File file = fc.getSelectedFile();
-//        }
+        
+        
     }
     
     

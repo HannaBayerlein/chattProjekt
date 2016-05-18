@@ -1,6 +1,9 @@
 package Client2;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -19,6 +22,7 @@ public class Client extends Thread {
 	Socket socket;
 	Socket fileSocket;
 	private Controller controller;
+	private int j=1;
 
 	public Client(Controller controller) {
 		this.controller =controller;
@@ -33,11 +37,11 @@ public class Client extends Thread {
 			System.out.println("Just connected to " + socket.getInetAddress() + " and " + fileSocket.getInetAddress());
 	
 			rClient = new ReadClient(socket,controller);
-			rFile = new ReadFile(fileSocket);
-			sFile = new SendFile(fileSocket);
+			rFile = new ReadFile(fileSocket,controller); 
+		//	sFile = new SendFile(fileSocket);
 			rClient.start();
 			rFile.start();
-			sFile.start();
+		//	sFile.start();
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -46,6 +50,9 @@ public class Client extends Thread {
 	}
 	public Socket getSocket(){
 		return socket;
+	}
+	public Socket getfileSocket(){
+		return fileSocket;
 	}
 	public void sendMessageToServer(String message) {
 		PrintStream print;
@@ -61,11 +68,39 @@ public class Client extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		try {
-//			socket.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	}
+	public void sendFileToServer(String filePath){
+		int i;
+		try {
+			DataOutputStream os = new DataOutputStream(fileSocket.getOutputStream());
+			File file = new File(filePath);
+			
+			/** skickar filnamn */
+			
+			String s= "SendFile"+ j + ".jpg";
+			os.writeUTF(s);
+			os.flush();
+			j++;
+			/** sending file lenght*/
+			os.writeLong(file.length());
+			os.flush();
+
+			/** get file and send it on outputstream */
+			FileInputStream fis = new FileInputStream(file);
+			
+				while ((i = fis.read()) > -1) {
+					os.write(i);
+				}
+				
+			os.flush();
+//			fis.close();
+
+
+		} catch (Exception e) {
+			System.out.println("Could not receive picture");
+
+			e.printStackTrace();
+		}
 	}
 	public String receiveLoginUser(){
 		String answer=null;
@@ -78,11 +113,7 @@ public class Client extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		try {
-//			socket.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+
 		return answer;
 	}
 	

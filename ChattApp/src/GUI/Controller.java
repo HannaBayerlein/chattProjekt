@@ -17,6 +17,9 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 	public void setModel(Model m){
 		model=m;
 	}
+	public void addClient(Client c){
+		client = c;
+	}
 	public void receive(String message) { //anropas av read client
 		if(message.contains("&&&")){
 			String[] users = message.split("&&&");
@@ -34,23 +37,16 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 		client.sendMessageToServer(text);
 
 	}
-	public void addClient(Client c){
-		client = c;
+	public void sendFile(String filePath){
+		
+		client.sendFileToServer(filePath);	
 	}
-	
 	public boolean Login(String name) throws IOException{
 
 			if(!(client.getSocket() == null)){
 			client.sendMessageToServer(name); //outputStream name. 
 			return true;
-			
-		//server: skickar User som plockas upp här.
-		//String answer = client.receiveLoginUser();
-		//Här kollar man också om det finns någon med samma namn.. 
-		
-		//User user= new User(null,name);
-		//model.addUser(name);
-		
+	
 			}
 		
 		return false;
