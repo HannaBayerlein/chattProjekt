@@ -74,10 +74,11 @@ public class Client extends Thread {
 		try {
 			DataOutputStream os = new DataOutputStream(fileSocket.getOutputStream());
 			File file = new File(filePath);
-			
+			System.out.println("I client.send "+filePath);
+
 			/** skickar filnamn */
 			
-			String s= "SendFile"+ j + ".jpg";
+			String s= file.getName();
 			os.writeUTF(s);
 			os.flush();
 			j++;
@@ -91,9 +92,10 @@ public class Client extends Thread {
 				while ((i = fis.read()) > -1) {
 					os.write(i);
 				}
-				
+	
 			os.flush();
-//			fis.close();
+			i=0;
+		//	fis.close();
 
 
 		} catch (Exception e) {

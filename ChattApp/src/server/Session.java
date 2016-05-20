@@ -43,9 +43,17 @@ public class Session extends Thread {
 							mailBox.add(user, updateUserList);
 
 						} else if (message.startsWith("Q")) {
-							String exitMessage = "valde att lämna chatten";
-							mailBox.add(user, exitMessage);
+							User tempUser = user;
 							activeUsers.remove(user);
+							String exitMessage = "valde att lämna chatten";
+							StringBuilder sb=new StringBuilder();
+							sb.append(exitMessage);
+							for(User u: activeUsers){
+								sb.append("&&&"+u.getNick());
+							}
+							String exitMessageUpdateUsers = sb.toString();
+							
+							mailBox.add(tempUser, exitMessageUpdateUsers);
 
 						} else {
 							mailBox.add(user, message);

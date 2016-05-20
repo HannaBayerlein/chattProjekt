@@ -1,4 +1,4 @@
-package skr√§pTyp;
+package skr‰pTyp;
 
 import server.Message;
 import server.User;

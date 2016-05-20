@@ -24,7 +24,7 @@ public class FileSession extends Thread {
 	public void run() {
 
 		try {
-//			while (true) {
+			while (true) {
 				Socket socket = user.getFileSocket();
 				DataInputStream dis = new DataInputStream(socket.getInputStream());
 				String fileName = dis.readUTF();
@@ -47,8 +47,7 @@ public class FileSession extends Thread {
 					fileBox.uploadFile(user, fileName, byteFile);
 
 				}
-
-//			}
+			}
 
 		} catch (Exception e) {
 

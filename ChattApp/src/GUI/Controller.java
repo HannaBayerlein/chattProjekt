@@ -40,6 +40,7 @@ public class Controller { //Controller ska ha koll på input/output-stream och s
 	public void sendFile(String filePath){
 		
 		client.sendFileToServer(filePath);	
+		System.out.println("I controller: "+filePath);
 	}
 	public boolean Login(String name) throws IOException{
 

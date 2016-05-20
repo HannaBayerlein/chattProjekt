@@ -23,17 +23,21 @@ public class ReadFile extends Thread {
 		boolean isOnline = true;
 		String fileName;
 		int fileSize;
+		int index = 1;
 		
 		System.out.println("i ReadFile nu, utanfÃ¶r try..");
 			try {
-				while (isOnline) {
-				System.out.println("i ReadFile nu..");
 				DataInputStream dis = new DataInputStream(fileSocket.getInputStream());
+				while (isOnline) {
+				System.out.println("i ReadFile nu..Gång: "+index);
+				index++;
+				
 				System.out.println(fileSocket.getInputStream());
 				/**
 				 * receives name of file and creates file in C:/Users/felicia/
 				 */
 				fileName = dis.readUTF();
+				System.out.println("filname från dis: "+fileName);
 				File newFile = new File("/Users/Elin/Desktop/" + fileName);
 
 				/** receives size of file */
@@ -59,7 +63,8 @@ public class ReadFile extends Thread {
 				//fout.close();
 
 				fout.flush();
-//				fout.close();
+				
+				fout.close();
 //				dis.close();
 				}
 			} catch (IOException e) {

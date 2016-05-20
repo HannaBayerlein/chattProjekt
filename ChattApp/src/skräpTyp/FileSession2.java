@@ -1,4 +1,4 @@
-package skr√§pTyp;
+package skr‰pTyp;
 
 	import java.io.IOException;
 	import java.util.ArrayList;
