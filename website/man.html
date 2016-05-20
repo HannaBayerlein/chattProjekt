@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>chattApp - Manual</title>
-  	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,100' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='chattApp.css'/>
   </head>
@@ -35,104 +35,23 @@
 
         <div class="text">
           <h2>Manual</h2>
-          <p>Nedan finns X gallerier som beskriver hur en användare kan interagera med GUIt.
-            Klicka på respektive galleri för att se fler bilder med bildtexter som beskriver händelseförloppet
-            i ett exempelscenario.</p>
-
-            <h3>Start</h3>
-            <div class="responsive">
-              <div class="img">
-                <img src="http://users.student.lth.se/dat14esc/chattProjekt/website/images/1.png" alt="1" width="255" height="150">
-                <div class="desc">När användaren öppnar programmet syns först en dialogruta som ber användaren skriva in sitt användarnamn. När det är gjort, klickar användaren på 'OK'.</div>
-              </div>
-            </div>
-
-            <div class="responsive">
-              <div class="img">
-                <img src="http://users.student.lth.se/dat14esc/chattProjekt/website/images/2.png" alt="1" width="703" height="406">
-                <div class="desc">Användaren kommer in i chattrummet.</div>
-              </div>
-            </div>
-
-            <div class="responsive">
-              <div class="img">
-                <img src="http://users.student.lth.se/dat14esc/chattProjekt/website/images/3.png" alt="1" width="703" height="401">
-                <div class="desc">En annan användare loggar in. och skriver ett första meddelande.</div>
-              </div>
-            </div>
-
-            <h3>Ändra användarnamn</h3>
-            <div class="responsive">
-              <div class="img">
-                <img src="http://users.student.lth.se/dat14esc/chattProjekt/website/images/4-1.png" alt="1" width="704" height="403">
-                <div class="desc">För att byta användarnamn skriver användaren kommandot 'N: NyttAnvändarnamn' i
-                  textrutan.</div>
-              </div>
-            </div>
-
-            <div class="responsive">
-              <div class="img">
-                <img src="http://users.student.lth.se/dat14esc/chattProjekt/website/images/4-2.png" alt="1" width="705" height="404">
-                <div class="desc">När användaren tryckt på knappen 'Send' eller Enter-knappen på sitt tangentbord,
-                  visas namnbytet i chattfönstret.</div>
-              </div>
-            </div>
-
-            <h3>Skicka en fil</h3>
-
-            <div class="clearfix"></div>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-              <span class="close">×</span>
-              <img class="modal-content" id="img01">
-              <div id="caption"></div>
-            </div>
-
-            <script>
-            // Get the modal
-            var modal = document.getElementById('myModal');
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() { 
-                modal.style.display = "none";
-            }
-
-            // Get all images and insert the clicked image inside the modal
-            // Get the content of the image description and insert it inside the modal image caption
-            var images = document.getElementsByTagName('img');
-            var modalImg = document.getElementById("img01");
-            var captionText = document.getElementById("caption");
-            var i;
-            for (i = 0; i < images.length; i++) {
-               images[i].onclick = function(){
-                   modal.style.display = "block";
-                   modalImg.src = this.src;
-                   modalImg.alt = this.alt;
-                   captionText.innerHTML = this.nextElementSibling.innerHTML;
-               }
-            }
-            </script>
-            
+          <p>Hula hula manual.</p>
         </div>
         
       </div>
     </div>
     
     <div class="last">
-    	<div class="container">
-	      <h2>Håll dig uppdaterad</h2>
-	      <p>Vill du får reda på när nya funktioner släpps? Registrera dig i vår mailtråd.</p>
-	      <a class="btn" href="#">Ja!</a>
-  		</div>
+      <div class="container">
+        <h2>Håll dig uppdaterad</h2>
+        <p>Vill du får reda på när nya funktioner släpps? Registrera dig i vår mailtråd.</p>
+        <a class="btn" href="#">Ja!</a>
+      </div>
     </div>
     
     <div class="footer">
       <p>© chattApp</p>
     </div>
-
+    
   </body>
 </html>
