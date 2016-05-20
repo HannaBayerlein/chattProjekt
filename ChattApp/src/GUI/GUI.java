@@ -41,8 +41,8 @@ public class GUI implements Observer {
 	
 	Chattframe = new JFrame("ChattUp");
 
-	JTabbedPane tabbedPane = new JTabbedPane();			//Delen av framen som �r tabbaer
-	JPanel userPanel = new JPanel();					//Delen av framen d�r anv�ndarna ska listas
+	JTabbedPane tabbedPane = new JTabbedPane();			//Delen av framen som är tabbaer
+	JPanel userPanel = new JPanel();					//Delen av framen där användarna ska listas
 	
 	userpane=new UserPane();
 	
@@ -68,7 +68,7 @@ public class GUI implements Observer {
 		Loginframe = new JFrame("Login");
 		JPanel panel = new JPanel();
 		JTextField text = new JTextField();
-		text.setText("Välj Användarnamn: ");
+		text.setText("Välj användarnamn: ");
 		text.setEditable(false);
 		Userinput = new JTextField(15);
 

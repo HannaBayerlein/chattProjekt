@@ -17,7 +17,7 @@ public class ChattroomPane extends JPanel{
 	JButton SendFileButton;
 	
 	public ChattroomPane(){
-		//Chattf�nster
+		//Chattfönster
 		Chattroom = new JTextArea(18,37); 
 
 		Chattroom.setEditable(false);
@@ -40,7 +40,7 @@ public class ChattroomPane extends JPanel{
 		
 		SendButton = new JButton("Send");
 
-		SendButton.setToolTipText("Klicka p� knappen f�r att skicka meddelande");
+		SendButton.setToolTipText("Klicka på knappen för att skicka meddelande");
 		
 		SendFileButton =new JButton("Send File");
 		SendFileButton.setToolTipText("Klicka på knappen för att skicka en fil");
@@ -52,7 +52,7 @@ public class ChattroomPane extends JPanel{
 //		MessageField.addActionListener(actionlistener);
 //		SendButton.addKeyListener(keylistener);
 		
-		//Alla komponenter l�ggs till i Panel:n s� de syns i GUI:t
+		//Alla komponenter läggs till i Panel:n så de syns i GUI:t
 //		getContentPane().add(scroll);
 		//add(Chattroom);
 		add(scroll);

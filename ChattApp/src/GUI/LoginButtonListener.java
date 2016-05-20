@@ -25,7 +25,7 @@ public class LoginButtonListener implements ActionListener, KeyListener {
 	    public void actionPerformed(ActionEvent submitClicked) {
 	    	if (!(gui.getUserName().equals("") )) {
 	    		gui.ceateUser(gui.getUserName());
-	    		System.out.println("Du ahr valt namn: "+ gui.getUserName());
+	    		System.out.println("Du har valt namn: "+ gui.getUserName());
 	    		try {
 	    			
 					if(controller.Login(gui.getUserName())){
