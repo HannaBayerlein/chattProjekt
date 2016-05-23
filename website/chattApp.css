@@ -114,7 +114,7 @@ div {
   margin: 50px auto;
   background: #FFF;
   width: 100%;
-  display: block;
+  display: inline-block;
   margin: 0 auto;
   padding: 20px 170px;
 }
