@@ -126,6 +126,7 @@ div {
 
 .main .container .text {
   padding-left: 250px;
+  position: relative;
 }
 
 .main .container .text .bilder {
